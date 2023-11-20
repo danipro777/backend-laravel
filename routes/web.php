@@ -7,10 +7,21 @@ use App\Http\Controllers\inscripcionesController;
 use App\Http\Controllers\sneackersController;
 use App\Http\Controllers\appsController;
 use App\Http\Controllers\libreriasController;
+use App\Http\Controllers\tareaspController;
 
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('tareas')->group(function (){
+    Route::get('/get', [tareaspController::class, 'get']);
+    Route::get('/get/{id}', [tareaspController::class, 'getById']);
+    Route::post('/', [tareaspController::class, 'create']);
+    Route::put('/{id}', [tareaspController::class, 'update']);
+    Route::delete('/{id}', [tareaspController::class, 'delete']);
+    Route::put('/completado/{id}', [tareaspController::class, 'updateCompletado']);
+    Route::put('/cancelar/{id}', [tareaspController::class, 'updateCancelado']);
 });
 
 Route::prefix('librerias')->group(function (){
